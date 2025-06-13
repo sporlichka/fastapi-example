@@ -1,5 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel, EmailStr
+import uuid
 
 class UserBase(BaseModel):
     email: EmailStr
@@ -15,7 +16,7 @@ class UserUpdate(BaseModel):
     is_active: bool | None = None
 
 class UserInDBBase(UserBase):
-    id: int
+    id: uuid.UUID
     created_at: datetime
     updated_at: datetime | None = None
     hashed_password: str
