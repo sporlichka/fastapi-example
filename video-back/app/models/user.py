@@ -17,4 +17,6 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     hashed_password = Column(String, nullable=False)
-    tasks = relationship("Task", back_populates="owner") 
+    tasks = relationship("Task", back_populates="owner")
+    pets = relationship("Pet", back_populates="owner")
+    activity_types = relationship("ActivityType", back_populates="owner", foreign_keys='ActivityType.owner_id') 
