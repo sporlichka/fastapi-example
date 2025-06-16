@@ -41,6 +41,13 @@ jobs:
       run: |
         mkdir -p tests
         echo 'import pytest
+        import sys
+        from pathlib import Path
+
+        # Add the project root directory to Python path
+        project_root = Path(__file__).parent
+        sys.path.append(str(project_root))
+
         from fastapi.testclient import TestClient
         from app.main import app
 
@@ -56,6 +63,17 @@ jobs:
             assert response.status_code == 200
             assert response.json() == {"status": "healthy"}' > tests/test_main.py
 
+    - name: Create conftest.py
+      working-directory: ./video-back
+      run: |
+        echo 'import pytest
+        import sys
+        from pathlib import Path
+
+        # Add the project root directory to Python path
+        project_root = Path(__file__).parent
+        sys.path.append(str(project_root))' > tests/conftest.py
+
     - name: Run tests
       working-directory: ./video-back
       env:
@@ -63,6 +81,7 @@ jobs:
         SECRET_KEY: "test_secret_key"
         ALGORITHM: "HS256"
         ACCESS_TOKEN_EXPIRE_MINUTES: "30"
+        PYTHONPATH: ${{ github.workspace }}/video-back
       run: |
         pytest tests/ --cov=app --cov-report=xml
 
