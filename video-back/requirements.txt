@@ -17,4 +17,9 @@ flake8==7.0.0
 # Additional dependencies
 PyJWT==2.8.0
 passlib[bcrypt]==1.7.4
-python-multipart==0.0.9 
+python-multipart==0.0.9
+
+# Celery and Redis
+celery==5.3.6
+redis==5.0.1
+flower==2.0.1  # For monitoring Celery tasks 
