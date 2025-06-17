@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
     setError('');
     try {
       await login(email, password);
-      navigate('/tasks');
+      navigate('/pets');
     } catch (err) {
       setError('Login failed');
     }
