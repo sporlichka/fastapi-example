@@ -66,7 +66,7 @@ const PetsPage: React.FC = () => {
         setShowForm(false);
         setEditingPet(null);
       } else {
-        const created = await createPet(pet);
+        await createPet(pet);
         await fetchPets();
         // Find the new pet by name/species/breed (since backend returns all pets)
         const newPet = (await getPets()).find(

@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:8000';
+const baseURL = 'http://104.248.248.142:8000/';
 
 function getToken() {
   return localStorage.getItem('token');
